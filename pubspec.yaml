@@ -21,7 +21,7 @@ dependencies:
   # PAQUETES DE IDIOMA Y ESTADO
   flutter_localizations:
     sdk: flutter
-  provider: ^6.1.2
+  provider: ^6.1.5+1
 
   # ✅ CORRECCIÓN CRUCIAL: Se usa la versión 0.20.2 para evitar el conflicto
   # con flutter_localizations, como lo requiere el SDK.
