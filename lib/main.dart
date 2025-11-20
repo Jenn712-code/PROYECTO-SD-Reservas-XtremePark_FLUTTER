@@ -1,8 +1,22 @@
 import 'package:flutter/material.dart';
-import 'home_page.dart'; // Importa la nueva página que acabas de crear
+import 'package:provider/provider.dart';
+
+// Importación crucial (RUTA LOCAL ANTIGUA):
+import 'home_page.dart';
+import 'l10n/app_localizations.dart';
+
+import 'package:xtremepark_flutter/language_provider.dart';
+import 'package:xtremepark_flutter/home_page.dart';
+
+import 'language_provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => LanguageProvider(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -10,15 +24,21 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final langProvider = Provider.of<LanguageProvider>(context);
+
     return MaterialApp(
-      title: 'Reserva Parque Extremo',
-      debugShowCheckedModeBanner: false, // Oculta la etiqueta de debug
+      // Configuración de localización OBLIGATORIA
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+
+      locale: langProvider.currentLocale,
+      title: 'Xtreme Park - Reservas',
       theme: ThemeData(
-        // Puedes definir los colores principales aquí
         primarySwatch: Colors.green,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      // Muestra la HomePage como la pantalla inicial
       home: const HomePage(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }

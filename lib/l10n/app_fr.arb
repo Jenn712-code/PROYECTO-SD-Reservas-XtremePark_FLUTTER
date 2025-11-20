@@ -1,0 +1,18 @@
+{
+  "@@locale": "fr",
+  "headerTitle": "CHOISIS TON AVENTURE.\nCHOISIS TON PILOTE.",
+  "headerSubtitle": "Le parc d'attractions extrêmes le plus complet! Vivez l'adrénaline du parapente, des quads, de la tyrolienne et plus encore.",
+  "discoverParkButton": "Découvrir le parc",
+  "experiencesButton": "Expériences",
+  "portalPilotsLink": "Portail Pilotes",
+  "contactUsLink": "Nous contacter",
+  "createAccountButton": "Créer un compte",
+  "loginButton": "Se connecter",
+  "activitiesTitle": "NOS ACTIVITÉS",
+  "testimonialsTitle": "CE QUE DISENT NOS AVENTURIERS",
+  "reserveButton": "Réserver maintenant",
+  "happyAdventurersStat": "Aventuriers heureux",
+  "extremeActivitiesStat": "Activités extrêmes",
+  "securityStat": "Sécurité garantie",
+  "attentionStat": "Assistance"
+}

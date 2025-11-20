@@ -1,0 +1,18 @@
+{
+  "@@locale": "ja",
+  "headerTitle": "あなたのアドベンチャーを選んでください。\nパイロットを選んでください。",
+  "headerSubtitle": "最も完全なエクストリームパーク！パラグライダー、ATV、キャノピーなどのアドレナリンを体験してください。",
+  "discoverParkButton": "公園を発見する",
+  "experiencesButton": "体験",
+  "portalPilotsLink": "パイロットポータル",
+  "contactUsLink": "お問い合わせ",
+  "createAccountButton": "アカウント作成",
+  "loginButton": "ログイン",
+  "activitiesTitle": "アクティビティ",
+  "testimonialsTitle": "お客様の声",
+  "reserveButton": "今すぐ予約",
+  "happyAdventurersStat": "ハッピーアドベンチャー",
+  "extremeActivitiesStat": "エクストリームアクティビティ",
+  "securityStat": "認定安全性",
+  "attentionStat": "サポート"
+}
