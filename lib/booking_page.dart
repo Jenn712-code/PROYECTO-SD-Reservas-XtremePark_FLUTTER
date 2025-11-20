@@ -1,5 +1,4 @@
 // Archivo: lib/booking_page.dart
-
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart'; // Necesario para formatear la fecha/hora
 import 'package:xtremepark_flutter/payment_page.dart';
@@ -327,7 +326,7 @@ class PilotCard extends StatelessWidget {
   final bool isSelected;
   final Function(Pilot) onSelect;
 
-  const PilotCard({
+  const PilotCard({super.key,
     required this.pilot,
     required this.isSelected,
     required this.onSelect,
@@ -447,7 +446,7 @@ class AddonSelectionTile extends StatelessWidget {
   final bool isSelected;
   final ValueChanged<bool?> onChanged;
 
-  const AddonSelectionTile({
+  const AddonSelectionTile({super.key,
     required this.addon,
     required this.isSelected,
     required this.onChanged,

@@ -6,10 +6,6 @@ import 'home_page.dart';
 import 'l10n/app_localizations.dart';
 
 import 'package:xtremepark_flutter/language_provider.dart';
-import 'package:xtremepark_flutter/home_page.dart';
-
-import 'language_provider.dart';
-
 void main() {
   runApp(
     ChangeNotifierProvider(
