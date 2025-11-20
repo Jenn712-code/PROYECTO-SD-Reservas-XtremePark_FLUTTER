@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '/l10n/app_localizations.dart';
+import 'language_provider.dart';
+import 'package:xtremepark_flutter/booking_page.dart';
 
 // Definición de colores principales
 const Color extremeGreen = Color(0xFF6B9C23);
@@ -6,10 +10,11 @@ const Color darkGreenButton = Color(0xFF007A2B);
 const double webPadding = 100.0; // Espaciado horizontal para diseño web
 
 // =============================================================================
-// I. MODELO DE DATOS Y DATOS DE MUESTRA
+// I. MODELO DE DATOS Y DATOS DE MUESTRA (No se traducen aquí, solo se usan variables)
+// NOTA: Los campos 'description', 'duration', 'price' deberían venir de una API
+// o ser traducidos, pero para simplificar, usamos valores fijos.
 // =============================================================================
 
-// Modelo de datos para una sola actividad
 class Activity {
   final String title;
   final String description;
@@ -28,14 +33,14 @@ class Activity {
   });
 }
 
-// Lista de actividades de muestra (RUTAS CORREGIDAS)
+// Lista de actividades de muestra (Las rutas están corregidas)
 const List<Activity> kActivities = [
   Activity(
     title: 'PARAPENTE',
     description: 'La experiencia cumbre de Xtreme Park. Planea sobre paisajes únicos y disfruta de la libertad del cielo. ¡Tú eliges con quién volar!',
     duration: '15-30 minutos',
     price: 'USD 50.00',
-    imagePath: 'assets/images/parapente.jpg', // RUTA CORREGIDA: Asume assets/images/parapente.jpg
+    imagePath: 'assets/images/parapente.jpg',
     features: [
       'Selecciona a tu Piloto Certificado',
       'Fotografía y video de alta calidad',
@@ -47,7 +52,7 @@ const List<Activity> kActivities = [
     description: 'Siente la velocidad de un pájaro en nuestros circuitos de canopy. Ideal para compartir con amigos o familia.',
     duration: 'Recorrido de 90 minutos',
     price: 'USD 35.00',
-    imagePath: 'assets/images/canopy.jpg', // RUTA CORREGIDA: Asume assets/images/canopy.jpg
+    imagePath: 'assets/images/canopy.jpg',
     features: [
       'Vistas Panorámicas de la Montaña',
       'Equipos certificados',
@@ -59,7 +64,7 @@ const List<Activity> kActivities = [
     description: 'Conquista senderos y terrenos agrestes a toda velocidad. Rutas diseñadas para todos los niveles.',
     duration: '60 minutos',
     price: 'USD 70.00',
-    imagePath: 'assets/images/cuatrimotos.jpg', // RUTA CORREGIDA: Asume assets/images/cuatrimotos.jpg
+    imagePath: 'assets/images/cuatrimotos.jpg',
     features: [
       'Rutas de 30 y 60 Minutos con profesionales',
       'Recorridos por Paisajes Naturales',
@@ -77,14 +82,17 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    // 2. Obtener la instancia de AppLocalizations aquí
+    final l10n = AppLocalizations.of(context)!;
+
+    return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
-            _HeaderSection(),
-            _ActivitiesSection(),
-            _TestimonialsSection(),
-            _StatisticsSection(),
+            _HeaderSection(l10n: l10n),
+            _ActivitiesSection(l10n: l10n),
+            _TestimonialsSection(l10n: l10n),
+            _StatisticsSection(l10n: l10n),
           ],
         ),
       ),
@@ -93,24 +101,25 @@ class HomePage extends StatelessWidget {
 }
 
 // =============================================================================
-// III. WIDGETS DE SECCIÓN
+// III. WIDGETS DE SECCIÓN (Pasamos la instancia l10n)
 // =============================================================================
 
 // ---------------------- 1. WIDGET DEL ENCABEZADO Y BANNER ----------------------
 class _HeaderSection extends StatelessWidget {
-  const _HeaderSection();
+  final AppLocalizations l10n;
+  const _HeaderSection({required this.l10n});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       color: extremeGreen,
-      child: const Column(
+      child: Column( // Quitar 'const' para usar l10n
         children: [
-          _TopNavBar(),
+          _TopNavBar(l10n: l10n),
 
-          // Banner Principal (Texto grande y logo)
+          // Banner Principal
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: webPadding, vertical: 50),
+            padding: const EdgeInsets.symmetric(horizontal: webPadding, vertical: 50),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -119,37 +128,39 @@ class _HeaderSection extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      // TITULO TRADUCIDO
                       Text(
-                        'ELIGE TU AVENTURA.\nELIGE TU PILOTO.',
-                        style: TextStyle(
+                        l10n.headerTitle,
+                        style: const TextStyle(
                             fontSize: 48,
                             fontWeight: FontWeight.w900,
                             color: Colors.white,
                             height: 1.1),
                       ),
-                      SizedBox(height: 15),
+                      const SizedBox(height: 15),
+                      // SUBTITULO TRADUCIDO
                       Text(
-                        '¡El parque de atracciones extremas más completo! Vive la adrenalina del parapente, cuatrimotos, canopy, y más.',
-                        style: TextStyle(fontSize: 18, color: Colors.white70),
+                        l10n.headerSubtitle,
+                        style: const TextStyle(fontSize: 18, color: Colors.white70),
                       ),
-                      SizedBox(height: 30),
-                      // Fila de botones
+                      const SizedBox(height: 30),
+                      // Fila de botones TRADUCIDOS
                       Row(
                         children: [
-                          _ActionButon(text: 'Descubre el parque', isFilled: true),
-                          SizedBox(width: 20),
-                          _ActionButon(text: 'Experiencias', isFilled: false),
+                          _ActionButon(text: l10n.discoverParkButton, isFilled: true),
+                          const SizedBox(width: 20),
+                          _ActionButon(text: l10n.experiencesButton, isFilled: false),
                         ],
                       ),
                     ],
                   ),
                 ),
-                // LOGO GRANDE (RUTA CORREGIDA)
-                Expanded(
+                // LOGO GRANDE
+                const Expanded(
                   flex: 2,
                   child: Center(
                     child: Image(
-                      image: AssetImage('assets/logo_xtremePark.png'), // <-- RUTA CORREGIDA
+                      image: AssetImage('assets/images/logo_xtremePark.png'),
                       height: 250,
                       fit: BoxFit.contain,
                     ),
@@ -191,33 +202,39 @@ class _ActionButon extends StatelessWidget {
 }
 
 class _TopNavBar extends StatelessWidget {
-  const _TopNavBar();
+  final AppLocalizations l10n;
+  const _TopNavBar({required this.l10n});
 
   @override
   Widget build(BuildContext context) {
+    // Escuchamos el LanguageProvider para el selector de país
+    final langProvider = Provider.of<LanguageProvider>(context);
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: webPadding, vertical: 15),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          // LOGO PEQUEÑO (RUTA CORREGIDA)
+          // LOGO PEQUEÑO
           const Image(
-            image: AssetImage('assets/logo_xtremePark.png'), // <-- RUTA CORREGIDA
+            image: AssetImage('assets/images/logo_xtremePark.png'),
             height: 35,
             fit: BoxFit.contain,
           ),
 
-          // Botones y enlaces (derecha)
-          const Row(
+          // Botones y enlaces TRADUCIDOS
+          Row( // Quitar 'const' para usar l10n
             children: [
-              Text('Portal Pilotos', style: TextStyle(color: Colors.white)),
-              SizedBox(width: 20),
-              Text('Contáctanos', style: TextStyle(color: Colors.white)),
-              SizedBox(width: 40),
+              _CountrySelector(langProvider: langProvider),
+              const SizedBox(width: 20),
+              Text(l10n.portalPilotsLink, style: const TextStyle(color: Colors.white)),
+              const SizedBox(width: 20),
+              Text(l10n.contactUsLink, style: const TextStyle(color: Colors.white)),
+              const SizedBox(width: 40),
 
-              _StyledButton(text: 'Crear cuenta', backgroundColor: Colors.white, textColor: Colors.black),
-              SizedBox(width: 10),
-              _StyledButton(text: 'Iniciar sesión', backgroundColor: Colors.black, textColor: Colors.white),
+              _StyledButton(text: l10n.createAccountButton, backgroundColor: Colors.white, textColor: Colors.black),
+              const SizedBox(width: 10),
+              _StyledButton(text: l10n.loginButton, backgroundColor: Colors.black, textColor: Colors.white),
             ],
           ),
         ],
@@ -246,9 +263,50 @@ class _StyledButton extends StatelessWidget {
   }
 }
 
+class _CountrySelector extends StatelessWidget {
+  final LanguageProvider langProvider;
+
+  const _CountrySelector({required this.langProvider});
+
+  @override
+  Widget build(BuildContext context) {
+    return DropdownButton<Country>(
+      value: langProvider.currentCountry,
+      icon: const Icon(Icons.keyboard_arrow_down, color: Colors.white),
+      underline: Container(),
+
+      onChanged: (Country? newValue) {
+        if (newValue != null) {
+          langProvider.setCountry(newValue);
+        }
+      },
+
+      items: availableCountries.map<DropdownMenuItem<Country>>((Country country) {
+        return DropdownMenuItem<Country>(
+          value: country,
+          child: Row(
+            children: [
+              Text(country.flagEmoji, style: const TextStyle(fontSize: 20)),
+              const SizedBox(width: 8),
+              Text(
+                  country.name,
+                  style: const TextStyle(color: Colors.black, fontSize: 14)
+              ),
+            ],
+          ),
+        );
+      }).toList(),
+
+      dropdownColor: extremeGreen,
+    );
+  }
+}
+
+
 // ---------------------- 2. WIDGET DE ACTIVIDADES ----------------------
 class _ActivitiesSection extends StatelessWidget {
-  const _ActivitiesSection();
+  final AppLocalizations l10n;
+  const _ActivitiesSection({required this.l10n});
 
   @override
   Widget build(BuildContext context) {
@@ -256,9 +314,10 @@ class _ActivitiesSection extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 50, horizontal: webPadding),
       child: Column(
         children: [
-          const Text(
-            'NUESTRAS ACTIVIDADES',
-            style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+          // TITULO TRADUCIDO
+          Text(
+            l10n.activitiesTitle,
+            style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 30),
           // Flechas de navegación (Placeholder)
@@ -277,7 +336,7 @@ class _ActivitiesSection extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: kActivities.map((activity) {
               return Expanded(
-                child: _ActivityCard(activity: activity), // Pasamos el objeto Activity
+                child: _ActivityCard(activity: activity, l10n: l10n), // Pasamos l10n
               );
             }).toList(),
           ),
@@ -290,7 +349,8 @@ class _ActivitiesSection extends StatelessWidget {
 // Tarjeta de Actividad Detallada
 class _ActivityCard extends StatelessWidget {
   final Activity activity;
-  const _ActivityCard({required this.activity});
+  final AppLocalizations l10n;
+  const _ActivityCard({required this.activity, required this.l10n});
 
   @override
   Widget build(BuildContext context) {
@@ -324,7 +384,7 @@ class _ActivityCard extends StatelessWidget {
                 ),
                 const Divider(height: 15),
 
-                // 3. Descripción y Duración
+                // 3. Descripción y Duración (Usan datos fijos, no se traducen)
                 Text(
                   activity.description,
                   style: const TextStyle(fontSize: 14, color: Colors.black87),
@@ -340,7 +400,7 @@ class _ActivityCard extends StatelessWidget {
 
                 const SizedBox(height: 15),
 
-                // 4. Lista de Características (Features)
+                // 4. Lista de Características (Usan datos fijos, no se traducen)
                 ...activity.features.map((feature) => Padding(
                   padding: const EdgeInsets.only(bottom: 4.0),
                   child: Row(
@@ -357,10 +417,19 @@ class _ActivityCard extends StatelessWidget {
 
                 const SizedBox(height: 20),
 
-                // 5. Botón de Reserva con Precio
+                // 5. Botón de Reserva TRADUCIDO
                 ElevatedButton(
                   onPressed: () {
-                    // TODO: Lógica para ir a la página de detalles de la actividad y reserva
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => BookingPage(
+                          activityTitle: activity.title,
+                          // ✅ CORRECCIÓN: Parsear el precio para pasarlo como double
+                          basePrice: double.parse(activity.price.replaceAll('USD ', '')),
+                        ),
+                      ),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: extremeGreen,
@@ -368,7 +437,7 @@ class _ActivityCard extends StatelessWidget {
                     minimumSize: const Size(double.infinity, 50),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                   ),
-                  child: Text('Reserva (${activity.price})'),
+                  child: Text('${l10n.reserveButton} (${activity.price})'),
                 ),
               ],
             ),
@@ -381,7 +450,8 @@ class _ActivityCard extends StatelessWidget {
 
 // ---------------------- 3. WIDGET DE TESTIMONIOS ----------------------
 class _TestimonialsSection extends StatelessWidget {
-  const _TestimonialsSection();
+  final AppLocalizations l10n;
+  const _TestimonialsSection({required this.l10n});
 
   @override
   Widget build(BuildContext context) {
@@ -390,9 +460,10 @@ class _TestimonialsSection extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 50, horizontal: webPadding),
       child: Column(
         children: [
-          const Text(
-            'LO QUE DICEN NUESTROS AVENTUREROS',
-            style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+          // TITULO TRADUCIDO
+          Text(
+            l10n.testimonialsTitle,
+            style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 30),
           Row(
@@ -409,7 +480,7 @@ class _TestimonialsSection extends StatelessWidget {
   }
 }
 
-// Tarjeta de Testimonio
+// Tarjeta de Testimonio (El contenido interno no se traduce aquí, solo el marco)
 class _TestimonialCard extends StatelessWidget {
   final String name;
   const _TestimonialCard({required this.name});
@@ -448,20 +519,21 @@ class _TestimonialCard extends StatelessWidget {
 
 // ---------------------- 4. WIDGET DE ESTADÍSTICAS (Footer Negro) ----------------------
 class _StatisticsSection extends StatelessWidget {
-  const _StatisticsSection();
+  final AppLocalizations l10n;
+  const _StatisticsSection({required this.l10n});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       color: Colors.black,
       padding: const EdgeInsets.symmetric(vertical: 40, horizontal: webPadding),
-      child: const Row(
+      child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          _StatItem(value: '1K+', label: 'Aventureros Felices'),
-          _StatItem(value: '5+', label: 'Actividades Extremas'),
-          _StatItem(value: '100%', label: 'Seguridad Garantizada'),
-          _StatItem(value: '24/7', label: 'Atención'),
+          _StatItem(value: '1K+', label: l10n.happyAdventurersStat),
+          _StatItem(value: '5+', label: l10n.extremeActivitiesStat),
+          _StatItem(value: '100%', label: l10n.securityStat),
+          _StatItem(value: '24/7', label: l10n.attentionStat),
         ],
       ),
     );

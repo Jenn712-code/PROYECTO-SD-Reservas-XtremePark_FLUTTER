@@ -1,63 +1,52 @@
 name: xtremepark_flutter
 description: "Proyecto en Flutter de reservas de actividades extremas"
-# The following line prevents the package from being accidentally published to
-# pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: 'none'
 
-# The following defines the version and build number for your application.
 version: 1.0.0+1
 
 environment:
+  # Asegúrate de que esta versión de SDK sea compatible con tu instalación de Flutter
   sdk: ^3.9.2
 
-# Dependencies specify other packages that your package needs in order to work.
+# ==========================================================
+# SECCIÓN DEPENDENCIES
+# ==========================================================
 dependencies:
   flutter:
     sdk: flutter
 
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
+  # Paquetes originales
   cupertino_icons: ^1.0.8
+
+  # PAQUETES DE IDIOMA Y ESTADO
+  flutter_localizations:
+    sdk: flutter
+  provider: ^6.1.2
+
+  # ✅ CORRECCIÓN CRUCIAL: Se usa la versión 0.20.2 para evitar el conflicto
+  # con flutter_localizations, como lo requiere el SDK.
+  intl: ^0.20.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  # The "flutter_lints" package below contains a set of recommended lints to
-  # encourage good coding practices.
   flutter_lints: ^5.0.0
 
-# The following section is specific to Flutter packages.
+# ==========================================================
+# SECCIÓN FLUTTER
+# ==========================================================
 flutter:
 
-  # The following line ensures that the Material Icons font is
-  # included with your application, so that you can use the icons in
-  # the material Icons class.
   uses-material-design: true
 
-  # To add assets to your application, add an assets section, like this:
-  assets: # <--- Sección de assets descomentada
-    - assets/  # <--- Declaración de la carpeta assets/
+  # NECESARIO PARA QUE LA GENERACIÓN DE LOCALIZACIÓN FUNCIONE
+  generate: true
 
-  # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.dev/to/resolution-aware-images
-
-  # For details regarding adding assets from package dependencies, see
-  # https://flutter.dev/to/asset-from-package
+  # Configuración de Assets
+  assets:
+    - assets/
+    - assets/images/ # Ruta donde deben estar tus imágenes de actividades y pilotos
 
   # To add custom fonts to your application, add a fonts section here,
-  # in this "flutter" section.
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
-  #
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/to/font-from-package
+  # ... (El resto de la sección fonts/comentarios)

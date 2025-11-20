@@ -1,0 +1,18 @@
+{
+  "@@locale": "en",
+  "headerTitle": "CHOOSE YOUR ADVENTURE.\nCHOOSE YOUR PILOT.",
+  "headerSubtitle": "The most complete extreme amusement park! Experience the adrenaline of paragliding, quad bikes, canopy, and more.",
+  "discoverParkButton": "Discover the park",
+  "experiencesButton": "Experiences",
+  "portalPilotsLink": "Pilots Portal",
+  "contactUsLink": "Contact Us",
+  "createAccountButton": "Create account",
+  "loginButton": "Log In",
+  "activitiesTitle": "OUR ACTIVITIES",
+  "testimonialsTitle": "WHAT OUR ADVENTURERS SAY",
+  "reserveButton": "Book Now",
+  "happyAdventurersStat": "Happy Adventurers",
+  "extremeActivitiesStat": "Extreme Activities",
+  "securityStat": "Guaranteed Safety",
+  "attentionStat": "Support"
+}
