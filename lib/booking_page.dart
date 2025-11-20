@@ -180,7 +180,7 @@ class _BookingPageState extends State<BookingPage> {
               const SizedBox(height: 40),
 
               // --- 2. SELECCIÓN DEL PILOTO ---
-              Text('2. Elige tu Piloto Certificado (Opcional)', style: Theme.of(context).textTheme.headlineSmall),
+              Text('2. Elige tu Piloto Certificado', style: Theme.of(context).textTheme.headlineSmall),
               const Divider(color: extremeGreen),
 
               // Contenedor para las tarjetas de pilotos, centrado y con scroll
