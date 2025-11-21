@@ -1,0 +1,53 @@
+name: xtremepark_flutter
+description: "Proyecto en Flutter de reservas de actividades extremas"
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  # Asegúrate de que esta versión de SDK sea compatible con tu instalación de Flutter
+  sdk: ^3.9.2
+
+# ==========================================================
+# SECCIÓN DEPENDENCIES
+# ==========================================================
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Paquetes originales
+  cupertino_icons: ^1.0.8
+  http: ^1.1.0
+
+  # PAQUETES DE IDIOMA Y ESTADO
+  flutter_localizations:
+    sdk: flutter
+  provider: ^6.1.5+1
+
+  # ✅ CORRECCIÓN CRUCIAL: Se usa la versión 0.20.2 para evitar el conflicto
+  # con flutter_localizations, como lo requiere el SDK.
+  intl: ^0.20.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^5.0.0
+
+# ==========================================================
+# SECCIÓN FLUTTER
+# ==========================================================
+flutter:
+
+  uses-material-design: true
+
+  # NECESARIO PARA QUE LA GENERACIÓN DE LOCALIZACIÓN FUNCIONE
+  generate: true
+
+  # Configuración de Assets
+  assets:
+    - assets/
+    - assets/images/ # Ruta donde deben estar tus imágenes de actividades y pilotos
+
+  # To add custom fonts to your application, add a fonts section here,
+  # ... (El resto de la sección fonts/comentarios)

@@ -1,0 +1,18 @@
+{
+  "@@locale": "es",
+  "headerTitle": "ELIGE TU AVENTURA.\nELIGE TU PILOTO.",
+  "headerSubtitle": "¡El parque de atracciones extremas más completo! Vive la adrenalina del parapente, cuatrimotos, canopy, y más.",
+  "discoverParkButton": "Descubre el parque",
+  "experiencesButton": "Experiencias",
+  "portalPilotsLink": "Portal Pilotos",
+  "contactUsLink": "Contáctanos",
+  "createAccountButton": "Crear cuenta",
+  "loginButton": "Iniciar sesión",
+  "activitiesTitle": "NUESTRAS ACTIVIDADES",
+  "testimonialsTitle": "LO QUE DICEN NUESTROS AVENTUREROS",
+  "reserveButton": "Reserva",
+  "happyAdventurersStat": "Aventureros Felices",
+  "extremeActivitiesStat": "Actividades Extremas",
+  "securityStat": "Seguridad Garantizada",
+  "attentionStat": "Atención"
+}
